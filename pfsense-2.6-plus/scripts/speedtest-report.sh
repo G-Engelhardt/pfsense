@@ -35,10 +35,10 @@ PAGEREPORT01=$INTERFACE01.html
 #
 # Exemplo da Segunda Interface WAN de Monitoramento do SpeedTest, só descomentar e alterar o
 # valor da variável Interface com o nome correto que o pfSense atribuiu a Interface
-#INTERFACE02="em1"
-#SOURCE02=$(/sbin/ifconfig $INTERFACE02 | /usr/bin/grep -w inet | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
-#DESCRIPTION02=$(/sbin/ifconfig $INTERFACE02 | /usr/bin/grep -w description | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
-#PAGEREPORT02="$INTERFACE02.html"
+INTERFACE02="mvneta0.4092"
+SOURCE02=$(/sbin/ifconfig $INTERFACE02 | /usr/bin/grep -w inet | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
+DESCRIPTION02=$(/sbin/ifconfig $INTERFACE02 | /usr/bin/grep -w description | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
+PAGEREPORT02="$INTERFACE02.html"
 #
 # Criando o diretório dos Relatórios do SpeedTest
 # opção do comando: echo: -e (interpretador de escapes de barra invertida)
@@ -64,13 +64,13 @@ if [ -f "$DIRECTORYREPORT/$PAGEREPORT01" ]
 fi
 #
 # Exemplo do Bloco de If do arquivo de Relatório da Segunda Interface WAN.
-#if [ -f "$DIRECTORYREPORT/$PAGEREPORT02" ]
-#	then
-#		echo -e "Arquivo $DIRECTORYREPORT/$PAGEREPORT02 - OK"
-#	else
-#		/usr/local/bin/speedtest-cli --csv-header > $DIRECTORYREPORT/$PAGEREPORT02
-#		echo -e "Arquivo $DIRECTORYREPORT/$PAGEREPORT02 criado com sucesso!!!"
-#fi
+if [ -f "$DIRECTORYREPORT/$PAGEREPORT02" ]
+	then
+		echo -e "Arquivo $DIRECTORYREPORT/$PAGEREPORT02 - OK"
+	else
+		/usr/local/bin/speedtest-cli --csv-header > $DIRECTORYREPORT/$PAGEREPORT02
+		echo -e "Arquivo $DIRECTORYREPORT/$PAGEREPORT02 criado com sucesso!!!"
+fi
 #
 # Gerando o Relatório do SpeedTest da Interface WAN
 # opção do comando: echo: -e (interpretador de escapes de barra invertida)
@@ -84,5 +84,5 @@ fi
 echo -e "Relatório do SpeedTest gerado com sucesso em: $DIRECTORYREPORT/$PAGEREPORT01"
 #
 # Exemplo do relatório da segunda Interface WAN do SpeedTest
-#/usr/local/bin/speedtest-cli --secure --source=$SOURCE02 --csv >> $DIRECTORYREPORT/$PAGEREPORT02
-#echo -e "Relatório do SpeedTest gerado com sucesso em: $DIRECTORYREPORT/$PAGEREPORT02"
+/usr/local/bin/speedtest-cli --secure --source=$SOURCE02 --csv >> $DIRECTORYREPORT/$PAGEREPORT02
+echo -e "Relatório do SpeedTest gerado com sucesso em: $DIRECTORYREPORT/$PAGEREPORT02"
