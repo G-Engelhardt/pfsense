@@ -31,14 +31,14 @@ DIRECTORYREPORT="/usr/local/www/speedtest"
 INTERFACE01="mvneta0.4090"
 SOURCE01=$(/sbin/ifconfig $INTERFACE01 | /usr/bin/grep -w inet | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
 DESCRIPTION01=$(/sbin/ifconfig $INTERFACE01 | /usr/bin/grep -w description | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
-PAGEREPORT01=$INTERFACE01.html
+PAGEREPORT01=$INTERFACE01.csv
 #
 # Exemplo da Segunda Interface WAN de Monitoramento do SpeedTest, só descomentar e alterar o
 # valor da variável Interface com o nome correto que o pfSense atribuiu a Interface
 INTERFACE02="mvneta0.4092"
 SOURCE02=$(/sbin/ifconfig $INTERFACE02 | /usr/bin/grep -w inet | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
 DESCRIPTION02=$(/sbin/ifconfig $INTERFACE02 | /usr/bin/grep -w description | /usr/bin/sed -e 's/^[[:space:]]*//' | /usr/bin/cut -d ' ' -f2)
-PAGEREPORT02="$INTERFACE02.html"
+PAGEREPORT02=$INTERFACE02.csv
 #
 # Criando o diretório dos Relatórios do SpeedTest
 # opção do comando: echo: -e (interpretador de escapes de barra invertida)
